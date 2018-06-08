@@ -104,7 +104,7 @@ For the workshop we recommend the text editor Atom.
 
 * [Download Atom and install it](https://atom.io/)
 
-If you are using Mac OS X 10.7 or older versions, you can use another editor [Sublime Text 2](http://www.sublimetext.com/2).
+If you are using Mac OS X 10.7 or older versions, you can use another editor [Sublime Text 2](http://www.sublimetext.com/2). Just to make sure that you're not mixing up using your terminal or text-editor: change the theme of your Sublime text-editor, choosing one of the following: "iPlastic", "Slush &amp; Poppies", or "Zenburnesque".
 
 ### *5.* Update your browser
 
@@ -124,7 +124,7 @@ Go to `http://localhost:3000` in your browser, and you should see the 'Yay! You'
 
 Now you should have a working Ruby on Rails programming setup. Congrats!
 
-**Coach:** We recommend to verify by using the scaffold command and inputting data with the generated page with coaches to ensure everything is working.
+**Coach:** We recommend to verify by using the scaffold command and inputting data with the generated page with coaches to ensure everything is working. Also: remove the test app `myapp` to make super sure no-one is working in the wrong folder, following the steps of the workshop.
 
 <hr />
 
@@ -248,7 +248,7 @@ For the workshop we recommend the text editor Atom.
   * Copy the folder into your Program Files.
   * Launch atom in the folder.
 
-If you are using Windows Vista or older versions, you can use another editor [Sublime Text 2](http://www.sublimetext.com/2).
+If you are using Windows Vista or older versions, you can use another editor [Sublime Text 2](http://www.sublimetext.com/2). Just to make sure that you're not mixing up using your command prompt or text-editor: change the theme of your Sublime text-editor, choosing one of the following: "iPlastic", "Slush &amp; Poppies", or "Zenburnesque".
 
 ### *3.* Update your browser
 
@@ -283,7 +283,7 @@ Go to `http://localhost:3000` in your browser, and you should see the 'Yay! You'
 
 Now you should have a working Ruby on Rails programming setup. Congrats!
 
-**Coach:** We recommend to verify by using the scaffold command and inputting data with the generated page with coaches to ensure everything is working.
+**Coach:** We recommend to verify by using the scaffold command and inputting data with the generated page with coaches to ensure everything is working. Also: remove the test app `myapp` to make super sure no-one is working in the wrong folder, following the steps of the workshop.
 
 <hr />
 
@@ -320,7 +320,7 @@ rails new myapp
 
 For the workshop we recommend the text editor Sublime Text.
 
-* [Download Sublime Text and install it](http://www.sublimetext.com/2)
+* [Download Sublime Text and install it](http://www.sublimetext.com/2). Just to make sure that you're not mixing up using your terminal or text-editor: change the theme of your Sublime text-editor, choosing one of the following: "iPlastic", "Slush &amp; Poppies", or "Zenburnesque".
 
 
 ### *3.* Update your browser
@@ -341,7 +341,7 @@ Go to `http://localhost:3000` in your browser, and you should see the 'Yay! You'
 
 Now you should have a working Ruby on Rails programming setup. Congrats!
 
-**Coach:** We recommend to verify by using the scaffold command and inputting data with the generated page with coaches to ensure everything is working.
+**Coach:** We recommend to verify by using the scaffold command and inputting data with the generated page with coaches to ensure everything is working. Also: remove the test app `myapp` to make super sure no-one is working in the wrong folder, following the steps of the workshop.
 
 <hr />
 

@@ -47,11 +47,13 @@ some code
 <p>For example, if you see a terminal icon next to the highlight, like in the example above, you will need to copy the code and paste it into your Terminal (Mac) / Command Prompt (Windows).</p>
 </div>
 
+Need some reminders along the way? Check out this [handy cheatsheet for Ruby, Rails, console etc.](http://www.pragtob.info/rails-beginner-cheatsheet/)
+
 ### Important
 
 It is important that you select the instructions specific to your operating system - the commands you need to run on a Windows computer are slightly different to Mac or Linux. If you're having trouble check the Operating System switcher at the bottom of the commands. In case you're using a cloud service (e.g. Codenvy), you need to run the Linux commands even if you are on a Windows computer.
 
-## *1.*Creating the application
+## *1.* Creating the application
 
 We're going to create a new Rails app called *railsgirls*.
 
@@ -171,7 +173,7 @@ Hit <kbd>Ctrl</kbd>+<kbd>C</kbd> in the terminal to quit the server.
 **Coach:** Explain what each command does. What was generated? What does the server do?
 
 
-## *2.*Create Idea scaffold
+## *2.* Create Idea scaffold
 
 We're going to use Rails' scaffold functionality to generate a starting point that allows us to list, add, remove, edit, and view things; in our case ideas.
 
@@ -192,7 +194,7 @@ Open <http://localhost:3000/ideas> in your browser. Cloud service (e.g. Codenvy)
 
 Click around and test what you got by running these few command-line commands.
 
-## *3.*Design
+## *3.* Design
 
 **Coach:** Talk about the relationship between HTML and Rails. What part of views is HTML and what is Embedded Ruby (ERB)? What is MVC and how does this relate to it? (Models and controllers are responsible for generating the HTML views.)
 
@@ -241,7 +243,7 @@ Let's also add a navigation bar and footer to the layout. In the same file, unde
     </div>
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="/ideas">Ideas</a></li>
+        <li><a href="/ideas">Ideas</a></li>
       </ul>
     </div>
   </div>
@@ -269,12 +271,13 @@ table, td, th { vertical-align: middle; border: none; }
 th { border-bottom: 1px solid #DDD; }
 {% endhighlight %}
 
-Now make sure you saved your files and refresh the browser to see what was changed. You can also change the HTML & CSS further.
+Now make sure you saved your files and refresh the browser to see what was changed. Nothing changed? It might be that you're not connected to the wifi anymore. 
+You can change the HTML & CSS further, adding to `app/assets/stylesheets/application.css`.
 
 **Coach:** Talk a little about CSS and layouts.
 
 
-## *4.*Adding picture uploads
+## *4.* Adding picture uploads
 
 We need to install a piece of software to let us upload files in Rails.
 
@@ -305,12 +308,6 @@ Now we can generate the code for handling uploads. In the terminal run:
 {% highlight sh %}
 rails generate uploader Picture
 {% endhighlight %}
-
-Please start the rails server now.
-
-Note: Some people might be using a second terminal to run the rails server continuously.
-If so you need to **restart the Rails server process** now.
-This is needed for the app to load the added library.
 
 If an error is shown that the uploader cannot be found also add the following line:
 {% highlight ruby %}
@@ -347,9 +344,10 @@ to
 <%= form.file_field :picture, id: :idea_picture %>
 {% endhighlight %}
 
+In your file it might actually say `<%= f.text_field :picture, id: :idea_picture %>`, just roll with it.
 In your browser, add new idea with a picture. When you upload a picture it doesn't look nice because it only shows a path to the file, so let's fix that.
 
-Open `app/views/ideas/show.html.erb` and change
+To show the picture in the page of the idea itself, open `app/views/ideas/show.html.erb` and change
 
 {% highlight erb %}
 <%= @idea.picture %>
@@ -361,12 +359,25 @@ to
 <%= image_tag(@idea.picture_url, width: 600) if @idea.picture.present? %>
 {% endhighlight %}
 
+To make sure that the picture is also shown in the overview of ideas, open `app/views/ideas/index.html.erb`. Change the line
+
+{% highlight erb %}
+<%= idea.picture %>
+{% endhighlight %}
+
+to
+
+{% highlight erb %}
+<%= image_tag idea.picture_url, width: '100%' if idea.picture.present? %>
+{% endhighlight %}
+
 Now refresh your browser to see what changed.
+Note: Some people might be using a second terminal to run the rails server continuously.
 
 **Coach:** Talk a little about HTML.
 
 
-## *5.*Finetune the routes
+## *5.* Finetune the routes
 
 Open <http://localhost:3000> (or your preview url, if you are using a cloud service). It still shows the "Yay! You’re on Rails!" page. Let's make it redirect to the ideas page.
 
@@ -380,7 +391,7 @@ Test the change by opening the root path (that is, <http://localhost:3000/> or y
 
 **Coach:** Talk about routes, and include details on the order of routes and their relation to static files.
 
-## Create static page in your app
+## *6.* Create static page in your app
 
 Lets add a static page to our app that will hold information about the author of this application — you!
 
@@ -396,26 +407,50 @@ It also adds a new simple route to your routes.rb.
 get "pages/info"
 {% endhighlight %}
 
-Now you can open the file `app/views/pages/info.html.erb` and add information about you in HTML. To see your new info page, take your browser to <http://localhost:3000/pages/info> or, if you are a cloud service user, append '/pages/info' to your preview url.
+Now you can open the file `app/views/pages/info.html.erb` and add information about you in HTML. To see your new info page, take your browser to <http://localhost:3000/pages/info> or, if you are a cloud service user, append '/pages/info' to your preview url. 
 
-## *6+.*What next?
+## *7.* Add a button to your navigation bar
+
+Now that we know your new static page works, let's make sure people can visit it by creating a button for it in the navigation bar. 
+
+Open `app/views/layouts/application.html.erb` in your text editor and under the line
+
+{% highlight html %}
+<li><a href="/ideas">Ideas</a></li>
+{% endhighlight %}
+
+add
+
+{% highlight html %}
+<li><a href="/pages/info">Info</a></li>
+{% endhighlight %}
+
+Refresh the page in your browser and click the newly created link to see if it works!
+
+## *8+.*What's next?
 
 * Add design using HTML &amp; CSS
 * Add ratings
 * Use CoffeeScript (or JavaScript) to add interaction
 * Add picture resizing to make loading the pictures faster
 
+## Other Guides
 
-## Additional Guides
-
-* Guide 0: [Handy cheatsheet for Ruby, Rails, console etc.](http://www.pragtob.info/rails-beginner-cheatsheet/)
-* Guide 1: [Add commenting by Janika Liiv](/commenting)
-* Guide 2: [Put your app online with Heroku by Terence Lee](/heroku) / [Put your app online with OpenShift by Katie Miller](/openshift) / [Put your app online with anynines](/anynines) / [Put your app online with Trucker.io](/trucker)
-* Guide 3: [Create thumbnail images for the uploads by Miha Filej](/thumbnails)
-* Guide 4: [Add design using HTML &amp; CSS by Alex Liao](/design)
-* Guide 5: [Add Authentication (user accounts) with Devise by Piotr Steininger](/devise)
-* Guide 6: [Adding profile pictures with Gravatar](/gravatar)
-* Guide 7: [Test your app with RSpec](/testing-rspec)
-* Guide 8: [Continuous Deployment with Travis-CI](/continuous-travis) / [Continuous Deployment with Codeship](/continuous) / [Continuous Deployment with Snap CI](/continuous-snap-ci)
-* Guide 9: [Go through additional explanations for the App by Lucy Bain](https://github.com/lbain/railsgirls)
-* Guide 10: [Adding a back-end with Active Admin](/backend-with-active-admin)
+* [Handy cheatsheet for Ruby, Rails, console etc.](http://www.pragtob.info/rails-beginner-cheatsheet/)
+* Guide 1: [Guide to install Rails](/install) (You probably already did this one!)
+* Guide 2: [Build Your First App](/app) (This current page!)
+* Guide 3: [Push Your App to GitHub](/github)
+* Guide 4: Put your app online with...
+    * [Heroku](/heroku) / [OpenShift](/openshift) / [anynines](/anynines) / [Engine Yard](/engineyard) / [prepare for deployment with Phusion Passenger](/passenger)
+* Guide 5: [Allow Comments on Your App](/commenting)
+* Guide 6: [Add design using HTML &amp; CSS](/design)
+* Guide 7: [Create thumbnails with Carrierwave](/thumbnails)
+* Guide 8: [Add Authentication (user accounts) with Devise](/devise)
+* Guide 9: [Add Profile Pics with Gravatar](/gravatar)
+* Guide 10: [Improve your design with HTML and CSS](/dexign-html-css)
+* Guide 11: Continuous Deployment
+    * [Test your app with RSpec](testing-rspec) / [Ease up development with Phusion Passenger](/passenger) / [Simplifying your tests with Shoulda Matchers](testing-shoulda-matchers) / [CD with Travis-CI](/continuous-travis) / [CD with Codeship](/continuous)
+* Guide 12: [Build a voting app in Sinatra](/sinatra-app)
+* Guide 13: [Build a diary app in Ruby on Rails](diary-app)
+* Guide 14: [Add a back-end to your app (admin pages)](/backend-with-active-admin)
+* Guide 15: [Go through additional explanations for the App](https://github.com/lbain/railsgirls)
